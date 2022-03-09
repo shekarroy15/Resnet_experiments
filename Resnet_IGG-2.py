@@ -7,8 +7,8 @@ from keras import backend as k
 from keras.callbacks import ModelCheckpoint, LearningRateScheduler, TensorBoard, EarlyStopping
 
 img_width, img_height = 256, 256
-train_data_dir = "tf_files/codoon_photos"
-validation_data_dir = "tf_files/codoon_photos"
+train_data_dir = "tf_files/train_data"
+validation_data_dir = "tf_files/train_data"
 nb_train_samples = 4125
 nb_validation_samples = 466 
 batch_size = 16
@@ -37,6 +37,7 @@ model_final = Model(input = model.input, output = predictions)
 
 # compile the model 
 model_final.compile(loss = "categorical_crossentropy", optimizer = optimizers.SGD(lr=0.0001, momentum=0.9), metrics=["accuracy"])
+# feel free to try out the adam optimizer as well
 
 # Initiate the train and test generators with data Augumentation 
 train_datagen = ImageDataGenerator(
